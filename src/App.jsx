@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {QRCodeSVG} from 'qrcode.react';
 import { useEffect } from "react";
 
+import './App.css'
+
 const Workshop = () => {
   const [customerData, setCustomerData] = useState(null);
   const [serviceData, setServiceData] = useState({
