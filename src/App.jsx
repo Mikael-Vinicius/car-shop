@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import './App.css'
 import Header from "./components/Header";
+import logo from '../src/images/Logo Nova-04.png'
 
 const Workshop = () => {
   const [customerData, setCustomerData] = useState(null);
@@ -18,7 +19,7 @@ const Workshop = () => {
 
 
   const handleResponsiblePersonChange = (e) => {
-    // Atualiza o state com o nome da pessoa responsável pelo serviço
+   
     setServiceData({ ...serviceData, responsiblePerson: e.target.value });
   };
 
@@ -71,7 +72,7 @@ const Workshop = () => {
   };
   return (
     <div>
-      <Header />
+    <Header />
 
       <QRCodeSVG value={mockCustomerData} width='100%'/>
       
@@ -84,10 +85,13 @@ const Workshop = () => {
             <h2>Dados do Cliente/Veículo</h2>
             <p>Nome: {customerData.nome}</p>
             <p>Veículo: {customerData.veiculo}</p>
+            
           </div>
-        )}
 
-       
+        )}
+        <div className="logo-container">
+          <img className='logo' src={logo}/>
+        </div>
         <label>
           Nome da pessoa responsável pelo serviço:
           <input
