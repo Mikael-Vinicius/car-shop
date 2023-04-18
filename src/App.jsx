@@ -3,6 +3,7 @@ import {QRCodeSVG} from 'qrcode.react';
 import { useEffect } from "react";
 
 import './App.css'
+import Header from "./components/Header";
 
 const Workshop = () => {
   const [customerData, setCustomerData] = useState(null);
@@ -22,20 +23,20 @@ const Workshop = () => {
   };
 
   const handlePartChange = (e) => {
-    // Atualiza o state com a peça selecionada e seu valor
+   
     const part = e.target.value;
-    const partValue = getPartValue(part); // Função para obter o valor da peça
+    const partValue = getPartValue(part); 
     setServiceData({ ...serviceData, part: part, partValue: partValue });
   };
 
   const handleServiceStart = () => {
-    // Inicia o serviço e registra a data/hora de início
+    
     const serviceStart = new Date();
     setServiceData({ ...serviceData, serviceStart: serviceStart });
   };
 
   const handleServiceEnd = () => {
-    // Finaliza o serviço e registra a data/hora de término
+   
     const serviceEnd = new Date();
     setServiceData({ ...serviceData, serviceEnd: serviceEnd });
   };
@@ -49,27 +50,28 @@ const Workshop = () => {
 
 
   const getPartValue = (part) => {
-    // Lógica para obter o valor da peça com base na opção selecionada
+   
     let partValue = 0;
     switch (part) {
       case "peca1":
-        partValue = 10; // Valor da peça 1
+        partValue = 10; 
         break;
       case "peca2":
-        partValue = 20; // Valor da peça 2
+        partValue = 20; 
         break;
       case "peca3":
-        partValue = 30; // Valor da peça 3
+        partValue = 30; 
         break;
-      // Adicione mais casos para outras opções de peças aqui
+     
       default:
-        partValue = 0; // Valor padrão
+        partValue = 0; 
         break;
     }
     return partValue;
   };
   return (
     <div>
+      <Header />
 
       <QRCodeSVG value={mockCustomerData} width='100%'/>
       
@@ -85,7 +87,7 @@ const Workshop = () => {
           </div>
         )}
 
-        {/* Campo para nome da pessoa responsável pelo serviço */}
+       
         <label>
           Nome da pessoa responsável pelo serviço:
           <input
@@ -95,7 +97,7 @@ const Workshop = () => {
           />
         </label>
 
-        {/* Campo para seleção da peça */}
+       
         <label>
           Peça:
           <select value={serviceData.part} onChange={handlePartChange}>
@@ -103,16 +105,16 @@ const Workshop = () => {
             <option value="peca1">Peça 1</option>
             <option value="peca2">Peça 2</option>
             <option value="peca3">Peça 3</option>
-            {/* Adicione mais opções de peças aqui */}
+            
           </select>
         </label>
 
-        {/* Mostra o valor da peça selecionada */}
+      
         {serviceData.part && (
           <p>Valor da peça: R$ {serviceData.partValue.toFixed(2)}</p>
         )}
 
-        {/* Botão para iniciar o serviço */}
+       
         {!serviceData.serviceStart && (
           <button type="button" onClick={handleServiceStart}>
             Iniciar Serviço
@@ -120,14 +122,13 @@ const Workshop = () => {
             </button>
         )}
 
-        {/* Botão para finalizar o serviço */}
         {serviceData.serviceStart && !serviceData.serviceEnd && (
           <button type="button" onClick={handleServiceEnd}>
             Finalizar Serviço
           </button>
         )}
 
-        {/* Mostra a data/hora de início e término do serviço */}
+       
         {serviceData.serviceStart && serviceData.serviceEnd && (
           <div>
             <h2>Informações do Serviço</h2>
